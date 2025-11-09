@@ -1,0 +1,1 @@
+# MobileNet-Based-Transfer-Learning-for-Multi-Crop-Disease-Detection
