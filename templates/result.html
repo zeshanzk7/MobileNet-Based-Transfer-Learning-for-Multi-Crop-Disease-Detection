@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detection Results - CropCare AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-leaf"></i>
+                <span>CropCare AI</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="results-section">
+        <div class="container">
+            <a href="/" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Upload Another Image
+            </a>
+            
+            <div class="results-grid">
+                <div class="result-image-card">
+                    <h3>Uploaded Image</h3>
+                    <img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="Uploaded crop image">
+                </div>
+                
+                <div class="result-info-card">
+                    <div class="prediction-header">
+                        <h2>Detection Results</h2>
+                        <div class="confidence-badge">
+                            {{ "%.2f"|format(confidence) }}% Confidence
+                        </div>
+                    </div>
+                    
+                    <div class="prediction-details">
+                        <div class="detail-row">
+                            <span class="label"><i class="fas fa-seedling"></i> Crop:</span>
+                            <span class="value">{{ prediction.crop }}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label"><i class="fas fa-bug"></i> Disease:</span>
+                            <span class="value {{ 'healthy' if 'healthy' in prediction.disease.lower() else 'diseased' }}">
+                                {{ prediction.disease }}
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="disease-info">
+                        <h3><i class="fas fa-info-circle"></i> Description</h3>
+                        <p>{{ prediction.info.description }}</p>
+                        
+                        <h3><i class="fas fa-exclamation-triangle"></i> Symptoms</h3>
+                        <ul>
+                            {% for symptom in prediction.info.symptoms %}
+                            <li>{{ symptom }}</li>
+                            {% endfor %}
+                        </ul>
+                        
+                        <h3><i class="fas fa-question-circle"></i> Causes</h3>
+                        <ul>
+                            {% for cause in prediction.info.causes %}
+                            <li>{{ cause }}</li>
+                            {% endfor %}
+                        </ul>
+                        
+                        <h3><i class="fas fa-shield-alt"></i> Prevention Measures</h3>
+                        <ul class="prevention-list">
+                            {% for prevention in prediction.info.prevention %}
+                            <li>{{ prevention }}</li>
+                            {% endfor %}
+                        </ul>
+                        
+                        <h3><i class="fas fa-medkit"></i> Treatment Recommendations</h3>
+                        <ul class="treatment-list">
+                            {% for treatment in prediction.info.treatment %}
+                            <li>{{ treatment }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="top-predictions-card">
+                <h3>Top Predictions</h3>
+                <div class="predictions-list">
+                    {% for pred in top_predictions %}
+                    <div class="prediction-item">
+                        <span class="pred-name">{{ pred.class.replace('___', ' - ').replace('_', ' ') }}</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: {{ pred.confidence }}%"></div>
+                        </div>
+                        <span class="pred-confidence">{{ "%.2f"|format(pred.confidence) }}%</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <a href="/" class="primary-btn">
+                    <i class="fas fa-redo"></i> Analyze Another Image
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 CropCare AI. Empowering farmers with technology.</p>
+        </div>
+    </footer>
+</body>
+</html>

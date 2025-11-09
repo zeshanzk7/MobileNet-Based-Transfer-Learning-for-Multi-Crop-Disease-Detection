@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - CropCare AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-leaf"></i>
+                <span>CropCare AI</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about" class="active">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="about-section">
+        <div class="container">
+            <h1>About CropCare AI</h1>
+            
+            <div class="about-content">
+                <div class="about-card">
+                    <h2><i class="fas fa-bullseye"></i> Our Mission</h2>
+                    <p>CropCare AI is designed to help farmers and agricultural experts quickly identify crop diseases using artificial intelligence. Our goal is to reduce crop losses and improve yield through early disease detection and expert recommendations.</p>
+                </div>
+                
+                <div class="about-card">
+                    <h2><i class="fas fa-brain"></i> Technology</h2>
+                    <p>Our system uses deep learning with MobileNetV2 architecture, trained on the comprehensive PlantVillage dataset containing over 87,000 images of healthy and diseased crops. The model achieves high accuracy in detecting 38+ disease classes across multiple crops.</p>
+                </div>
+                
+                <div class="about-card">
+                    <h2><i class="fas fa-seedling"></i> Supported Crops</h2>
+                    <ul>
+                        <li>Tomato - 10 disease classes</li>
+                        <li>Potato - 3 disease classes</li>
+                        <li>Apple - 4 disease classes</li>
+                        <li>Grape - 4 disease classes</li>
+                        <li>Corn (Maize) - 4 disease classes</li>
+                        <li>Pepper (Bell) - 2 disease classes</li>
+                        <li>Cherry, Peach, Strawberry, and more</li>
+                    </ul>
+                </div>
+                
+                <div class="about-card">
+                    <h2><i class="fas fa-clipboard-check"></i> How It Works</h2>
+                    <ol>
+                        <li><strong>Upload:</strong> Take a clear photo of the affected crop leaf</li>
+                        <li><strong>Analyze:</strong> Our AI model processes the image in seconds</li>
+                        <li><strong>Results:</strong> Get disease identification with confidence score</li>
+                        <li><strong>Action:</strong> Follow recommended prevention and treatment measures</li>
+                    </ol>
+                </div>
+                
+                <div class="about-card">
+                    <h2><i class="fas fa-chart-line"></i> Benefits</h2>
+                    <ul>
+                        <li>Early disease detection</li>
+                        <li>Reduce crop losses</li>
+                        <li>Expert recommendations</li>
+                        <li>Quick and accurate results</li>
+                        <li>Accessible to all farmers</li>
+                        <li>No expert required on-site</li>
+                    </ul>
+                </div>
+                
+                <div class="about-card">
+                    <h2><i class="fas fa-database"></i> Dataset</h2>
+                    <p>Our model is trained on the PlantVillage Dataset, one of the largest public datasets for plant disease detection. The dataset includes:</p>
+                    <ul>
+                        <li>87,000+ high-quality images</li>
+                        <li>38 disease classes</li>
+                        <li>14 crop species</li>
+                        <li>Images captured under controlled conditions</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="cta-section">
+                <h2>Ready to protect your crops?</h2>
+                <a href="/" class="primary-btn">
+                    <i class="fas fa-microscope"></i> Start Detection
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 CropCare AI. Empowering farmers with technology.</p>
+        </div>
+    </footer>
+</body>
+</html>

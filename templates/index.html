@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Disease Detection System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-leaf"></i>
+                <span>CropCare AI</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/" class="active">Home</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1>AI-Powered Crop Disease Detection</h1>
+                <p>Upload an image of your crop leaf to detect diseases and get expert recommendations</p>
+                <div class="features">
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>38+ Disease Classes</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Multiple Indian Crops</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Prevention Tips</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="upload-section">
+        <div class="container">
+            <div class="upload-card">
+                <h2>Upload Crop Leaf Image</h2>
+                <p class="subtitle">Support for Tomato, Potato, Pepper, Corn, Apple, Grape & More</p>
+                
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                
+                <form action="/predict" method="POST" enctype="multipart/form-data" id="uploadForm">
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <h3>Drag & Drop your image here</h3>
+                        <p>or</p>
+                        <label for="fileInput" class="browse-btn">Browse Files</label>
+                        <input type="file" id="fileInput" name="file" accept="image/*" required hidden>
+                        <p class="file-info">Supported formats: JPG, PNG, JPEG</p>
+                    </div>
+                    
+                    <div class="preview-area" id="previewArea" style="display: none;">
+                        <img id="imagePreview" src="" alt="Preview">
+                        <button type="button" class="remove-btn" id="removeBtn">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn" id="submitBtn" disabled>
+                        <i class="fas fa-microscope"></i>
+                        Analyze Image
+                    </button>
+                    
+                    <div class="loader" id="loader" style="display: none;">
+                        <div class="spinner"></div>
+                        <p>Analyzing your crop image...</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-section">
+        <div class="container">
+            <h2>Supported Crops & Diseases</h2>
+            <div class="crop-grid">
+                <div class="crop-item">
+                    <i class="fas fa-apple-alt"></i>
+                    <h3>Apple</h3>
+                    <p>Scab, Black rot, Cedar rust</p>
+                </div>
+                <div class="crop-item">
+                    <i class="fas fa-seedling"></i>
+                    <h3>Tomato</h3>
+                    <p>Early blight, Late blight, Leaf mold, Septoria, Bacterial spot</p>
+                </div>
+                <div class="crop-item">
+                    <i class="fas fa-pepper-hot"></i>
+                    <h3>Potato</h3>
+                    <p>Early blight, Late blight</p>
+                </div>
+                <div class="crop-item">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Pepper</h3>
+                    <p>Bacterial spot</p>
+                </div>
+                <div class="crop-item">
+                    <i class="fas fa-corn"></i>
+                    <h3>Corn</h3>
+                    <p>Common rust, Leaf blight, Gray spot</p>
+                </div>
+                <div class="crop-item">
+                    <i class="fas fa-grapes"></i>
+                    <h3>Grape</h3>
+                    <p>Black rot, Esca, Leaf blight</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 CropCare AI. Empowering farmers with technology.</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
